@@ -506,7 +506,7 @@ async def test_coordinator_handles_v110_server_info_and_installed_with(
 async def test_coordinator_did_finish_cleaning_all_edge_cases(
     hass: HomeAssistant,
 ) -> None:
-    """Test comprehensive edge cases for _did_finish_cleaning across Gen3 and Gen4."""
+    """Test edge cases for _did_finish_cleaning across Gen3 and Gen4."""
     entry = MockConfigEntry(
         domain=DOMAIN,
         unique_id="http://192.168.1.50:8085",

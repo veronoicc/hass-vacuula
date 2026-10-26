@@ -18,21 +18,19 @@
 </p>
 
 > [!IMPORTANT]
-> ### ⚠️ Unofficial Community Integration — Not Affiliated with Vacuula
+> ### Unofficial Community Integration: Not Affiliated with Vacuula
 >
-> **This integration is an independent, community-developed project by [@Snuggert](https://github.com/Snuggert).**
-> **It is NOT an official Vacuula project and is in NO WAY affiliated with, endorsed by, or supported by the authors of the upstream Vacuula server project.**
+> This integration is an independent, community-developed project by [@Snuggert](https://github.com/Snuggert).
+> It is not an official Vacuula project and is not affiliated with, endorsed by, or supported by the authors of the upstream Vacuula server project.
 >
-> 🛑 **DO NOT submit support requests, bug reports, or questions to the upstream Vacuula repository** for any issues concerning this Home Assistant integration or its Lovelace map card.
+> Do not submit support requests, bug reports, or questions to the upstream Vacuula repository for any issues concerning this Home Assistant integration or its Lovelace map card.
 >
-> All issues and support requests must be opened exclusively on this repository:
-> 👉 [**Snuggert/hass-vacuula Issues**](https://github.com/Snuggert/hass-vacuula/issues)
-
+> Open issues and support requests exclusively on this repository:
+> [Snuggert/hass-vacuula Issues](https://github.com/Snuggert/hass-vacuula/issues)
 > [!WARNING]
-> ### ⚡ Prerequisite: A Working Vacuula Server Instance is Required
+> ### Prerequisite: A Working Vacuula Server Instance is Required
 >
-> **This integration does NOT communicate directly with your Neato robot vacuum and does NOT replace the Vacuula server software.**
->
+> This integration does not communicate directly with your Neato robot vacuum and does not replace the Vacuula server software.
 > To use this integration, you **must already have a running instance of the [Vacuula Server](https://github.com/vacuula/vacuula)** (deployed via Docker, Home Assistant Add-on, TrueNAS, or bare metal) and your Neato robot must already be linked and communicating with it.
 >
 > * **The Robot Vacuum** connects over Wi-Fi directly to your **Vacuula server** (handling Neato cloud replacement, robot TLS connections, firmware comms, and raw map data).
@@ -41,13 +39,13 @@
 >
 > If you have not set up Vacuula yet, please follow the [official Vacuula setup guide](https://github.com/vacuula/vacuula) before installing this integration.
 >
-> 📖 **Cross-Version Support**: For a complete version-by-version breakdown of Vacuula server releases (v1.0.0, v1.1.0+), Neato robot generations, and firmware installer compatibility, consult our [**Compatibility Guide**](https://github.com/Snuggert/hass-vacuula/blob/main/COMPATIBILITY.md).
+> Cross-version support: For a complete version-by-version breakdown of Vacuula server releases (v1.0.0, v1.1.0+), Neato robot generations, and firmware installer compatibility, consult our [**Compatibility Guide**](https://github.com/Snuggert/hass-vacuula/blob/main/COMPATIBILITY.md).
 
-An independent, full-featured, **100% local push** [Home Assistant](https://www.home-assistant.io/) custom integration and bundled interactive Lovelace map card for robot vacuums connecting through [**Vacuula**](https://github.com/vacuula/vacuula) — the local cloud replacement server for **Neato Botvac Connected** (Gen3: D3, D4, D5, D6, D7) and **Gen4** (D8, D9, D10) robot vacuums.
+An independent, full-featured, **100% local push** [Home Assistant](https://www.home-assistant.io/) custom integration and bundled interactive Lovelace map card for robot vacuums connecting through [Vacuula](https://github.com/vacuula/vacuula), the local cloud replacement server for Neato Botvac Connected (Gen3: D3, D4, D5, D6, D7) and Gen4 (D8, D9, D10) robot vacuums.
 
 ---
 
-## 📐 System Architecture
+## System Architecture
 
 The diagram below illustrates how your robot vacuum, the Vacuula server, and this Home Assistant integration interact across your local network:
 
@@ -81,11 +79,11 @@ flowchart LR
 
 ---
 
-## ✨ Visual Showcase
+## Visual Preview
 
 ### Bundled Interactive Map Card (`custom:vacuula-map-card`)
 
-The integration automatically registers a zero-dependency Web Component (`custom:vacuula-map-card`) into your Home Assistant Lovelace resources — no separate HACS frontend plugin install required.
+The integration automatically registers a zero-dependency Web Component (`custom:vacuula-map-card`) into your Home Assistant Lovelace resources without requiring a separate HACS frontend plugin install.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Snuggert/hass-vacuula/main/docs/assets/card_preview.svg" alt="Vacuula Interactive Map Card Preview" width="480" />
@@ -101,7 +99,7 @@ Vacuula RLE floorplans, colored room zone polygons, No-Go lines, dock markers, a
 
 ---
 
-## 🚀 Key Capabilities
+## Key Capabilities
 
 - **Instant Local Push (SSE) + Fallback Polling**: Subscribes to `/api/events` and per-robot `/api/robot/{serial}/connect` Server-Sent Events streams for sub-second status updates, backed by a 30-second health/state poll.
 - **Interactive Room Zone Selection**:
@@ -115,7 +113,7 @@ Vacuula RLE floorplans, colored room zone polygons, No-Go lines, dock markers, a
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Option 1: HACS (Recommended)
 
@@ -147,7 +145,7 @@ If the integration does not appear in your HACS search results yet:
 
 ---
 
-## 🗺️ Dashboard Card (`custom:vacuula-map-card`)
+## Dashboard Card (`custom:vacuula-map-card`)
 
 When the integration loads, it serves `/vacuula_frontend/vacuula-map-card.js` and automatically registers it in your Lovelace resources.
 
@@ -168,7 +166,7 @@ show_controls: true       # Show Start / Pause / Dock / Locate + Power & Nav dro
 
 ---
 
-## 🧩 Provided Entities (Per Robot)
+## Provided Entities (Per Robot)
 
 Entities are organized into primary controls, **Configuration**, and **Diagnostic** categories so your device page stays clean:
 
@@ -199,7 +197,7 @@ Entities are organized into primary controls, **Configuration**, and **Diagnosti
 
 ---
 
-## ⚡ Custom Actions (Services)
+## Custom Actions (Services)
 
 All custom actions accept either `entity_id` (via the standard Home Assistant entity picker) or `serial` (optional when only one robot is paired).
 
@@ -240,7 +238,7 @@ data:
 
 ---
 
-## 🤖 Automation Examples
+## Automation Examples
 
 ### 1. Clean the Dining Room After Dinner When Everyone Leaves the Room
 ```yaml
@@ -293,16 +291,16 @@ action:
 
 ---
 
-## 🏗️ Architecture & Developer Guide
+## Architecture & Developer Guide
 
-- **Architecture Deep Dive**: For details on the coordinator data pipeline, SSE event multiplexing, Gen3/Gen4 protocol normalization, pure-Python RLE PNG rendering, and security safeguards, see [**ARCHITECTURE.md**](https://github.com/Snuggert/hass-vacuula/blob/main/ARCHITECTURE.md).
+- **Architecture Details**: For details on the coordinator data pipeline, SSE event multiplexing, Gen3/Gen4 protocol normalization, pure-Python RLE PNG rendering, and security safeguards, see [**ARCHITECTURE.md**](https://github.com/Snuggert/hass-vacuula/blob/main/ARCHITECTURE.md).
 - **Developer Testing Environment**: For setting up a local dev environment, launching the Vacuula dev server with simulated Neato robots, and running live integration tests, see [**DEVELOPMENT.md**](https://github.com/Snuggert/hass-vacuula/blob/main/DEVELOPMENT.md).
 - **Cross-Version Compatibility Matrix**: For compatibility across Vacuula server releases (v1.0.0, v1.0.1, v1.1.0+), see [**COMPATIBILITY.md**](https://github.com/Snuggert/hass-vacuula/blob/main/COMPATIBILITY.md).
 - **Release History**: Release notes for each version are in [**CHANGELOG.md**](https://github.com/Snuggert/hass-vacuula/blob/main/CHANGELOG.md).
 
 ---
 
-## 📄 License & Disclaimers
+## License & Disclaimers
 
 - **Integration & Lovelace Card Code**: Licensed under the [**MIT License**](https://github.com/Snuggert/hass-vacuula/blob/main/LICENSE).
 - **Brand Assets**: The integration icons and logos are original artwork designed in the Home Assistant Material Design style specifically for this integration. They do not use any artwork, trademarks, or assets from the Vacuula project. See [**docs/brands.md**](https://github.com/Snuggert/hass-vacuula/blob/main/docs/brands.md) for brand asset specifications and dark theme guidelines.

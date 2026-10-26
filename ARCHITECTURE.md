@@ -11,7 +11,7 @@
 hass-vacuula/
 ├── LICENSE                                # MIT License
 ├── hacs.json                              # HACS repository metadata
-├── README.md                              # Visual showcase, installation & automation guide
+├── README.md                              # Overview, installation & automation guide
 ├── ARCHITECTURE.md                        # Technical design & Vacuula API specification
 ├── COMPATIBILITY.md                       # Cross-version compatibility matrix (Vacuula v1.0.0, v1.1.0+)
 ├── CHANGELOG.md                           # Release notes per version
@@ -77,7 +77,7 @@ The Vacuula server exposes a local HTTP JSON + Server-Sent Events (SSE) API (typ
 
 Both generations use `POST /api/robot/{serial}/command`, abstracted behind [`VacuulaApiClient`](custom_components/vacuula/api.py):
 
-| Action | Gen3 (`neato.gen3` — D3 to D7) | Gen4 (`neato.gen4` — D800, D8 to D10) |
+| Action | Gen3 (`neato.gen3`, D3 to D7) | Gen4 (`neato.gen4`, D800, D8 to D10) |
 | :--- | :--- | :--- |
 | **Poll State** | `{"cmd": "getRobotState"}` | `{"ability": "state.show"}` |
 | **Start House/Map Clean** | `{"cmd": "startCleaning", "params": {"category": 4, "mode": 2, "navigationMode": 1}}` *(category `2`=House, `4`=Map)* | `{"ability": "cleaning.start", "runs": [{"map": {"rank_id": "...", "track_id": null, "nogo_enabled": true}, "settings": {...}}]}` |
@@ -104,13 +104,13 @@ Both generations use `POST /api/robot/{serial}/command`, abstracted behind [`Vac
    - Computes the exact `[0..1]` normalized centroid (`x`, `y`) and polygon vertices (`points`) relative to the **cropped** bounding box and exposes them in the `zones` attribute of `image.<robot>_floor_map` and `image.<robot>_last_run_map`.
    - [`vacuula-map-card.js`](custom_components/vacuula/frontend/vacuula-map-card.js) uses these normalized coordinates to position interactive SVG polygon highlights and clickable room pills directly over the `image.<robot>_floor_map` / `image.<robot>_last_run_map` image with pixel-accurate alignment.
 3. **Zero-Flicker Shadow DOM State Diffing**:
-   - Because Home Assistant invokes `set hass(hass)` on custom cards whenever *any* entity in the home changes state, `VacuulaMapCard._computeSignature()` computes a lightweight state signature from only the target robot's vacuum, map images, schedule switch, and telemetry sensors—updating the DOM only when the robot's own state or user selection changes.
+   - Because Home Assistant invokes `set hass(hass)` on custom cards whenever *any* entity in the home changes state, `VacuulaMapCard._computeSignature()` computes a lightweight state signature from only the target robot's vacuum, map images, schedule switch, and telemetry sensors, updating the DOM only when the robot's own state or user selection changes.
    - The signature includes the full `zones` attribute and display names, so renaming or recoloring a room on the Vacuula server re-renders the card.
    - `VacuulaMapCardEditor` only rebuilds its form when the set of `vacuum.*` entities changes, and skips re-rendering from `setConfig()` while the title input has focus, so typing is never interrupted by unrelated state updates.
 
 ---
 
-## 6. Security & Robustness
+## 6. Security & Reliability
 
 Data rendered or requested by the integration originates from the Vacuula server (room names are user-defined) and from service call payloads, so it is treated as untrusted.
 
